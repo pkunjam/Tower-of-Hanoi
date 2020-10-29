@@ -20,7 +20,6 @@ using System.Collections;
         controller.Move(move * speed * Time.deltaTime);
 
         rotation.y += Input.GetAxis("Mouse X");
-        rotation.x += -Input.GetAxis("Mouse Y");
         Camera.main.transform.localRotation = Quaternion.Euler(rotation.x * speed, rotation.y * speed, 0);
 
     }
