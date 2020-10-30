@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Disk
+  - Stand
+  - A
+  - B
+  - C
   layers:
   - Default
   - TransparentFX
@@ -14,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Disk
+  - Stand
+  - Tower
   - 
   - 
   - 
