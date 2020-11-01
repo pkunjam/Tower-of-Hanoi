@@ -7,10 +7,14 @@ public class MoveOperations : MonoBehaviour
     GameObject selectedDisk = null;
     public GameObject Apos, Bpos, Cpos;
     public GameObject[] disks;
+
     public Stack<GameObject> stackA = new Stack<GameObject>();
     public Stack<GameObject> stackB = new Stack<GameObject>();
     public Stack<GameObject> stackC = new Stack<GameObject>();
+
     bool flagA, flagB, flagC;
+
+    public UIManager uiManager;
 
     void Start()
     {
@@ -18,11 +22,16 @@ public class MoveOperations : MonoBehaviour
         {
             stackA.Push(g);
         }
-
     }
 
     void Update()
     {
+        if (stackC.Count == 6)
+        {
+            Debug.Log("GameOver");
+            uiManager.GameOver();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit raycastHit;
@@ -54,7 +63,7 @@ public class MoveOperations : MonoBehaviour
                 }
 
                 selectedDisk = null;
-                StartCoroutine(UIManager.InvalidMoves());
+                StartCoroutine(uiManager.InvalidMoves());
                 Debug.Log("Invalid move");
             }
 
@@ -65,7 +74,7 @@ public class MoveOperations : MonoBehaviour
                     Debug.Log("Invalid move");
                     flags(selectedDisk);
                     selectedDisk = null;
-                    StartCoroutine(UIManager.InvalidMoves());
+                    StartCoroutine(uiManager.InvalidMoves());
                     return;
                 }
 
@@ -84,12 +93,13 @@ public class MoveOperations : MonoBehaviour
                     Debug.Log("Invalid move");
                     flags(selectedDisk);
                     selectedDisk = null;
-                    StartCoroutine(UIManager.InvalidMoves());
+                    StartCoroutine(uiManager.InvalidMoves());
                     return;
                 }
 
                 selectedDisk.transform.position = Bpos.transform.position;
                 stackB.Push(selectedDisk);
+                Debug.Log("StackB: " + stackB.Count);
                 MakeFalse();
                 selectedDisk = null;
                 UIManager.moves++;
@@ -103,7 +113,7 @@ public class MoveOperations : MonoBehaviour
                     Debug.Log("Invalid move");
                     flags(selectedDisk);
                     selectedDisk = null;
-                    StartCoroutine(UIManager.InvalidMoves());
+                    StartCoroutine(uiManager.InvalidMoves());
                     return;
                 }
 
@@ -115,7 +125,7 @@ public class MoveOperations : MonoBehaviour
                 Debug.Log("Done");
             }
         }
-        
+
     }
 
     void flags(GameObject selected)
