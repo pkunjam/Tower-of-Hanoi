@@ -30,8 +30,6 @@ Checkout the [video](https://youtu.be/fukfXXH-EKY) for demo.
 * Click on any of the rotating cubes above towers to transfer the selected disc to the intent tower.
 * Press "Esc" key to open pause menu.
 
-<br/>
-
 ## Building and Running
 
     Note: This project has been compiled and tested using Unity 2019.2.12f1
