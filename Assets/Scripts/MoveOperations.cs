@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class MoveOperations : MonoBehaviour
 {
     GameObject selectedDisk = null;
     public GameObject Apos, Bpos, Cpos;
@@ -54,16 +54,18 @@ public class Move : MonoBehaviour
                 }
 
                 selectedDisk = null;
-                Debug.Log("Invalid");
+                StartCoroutine(UIManager.InvalidMoves());
+                Debug.Log("Invalid move");
             }
 
             if(Physics.Raycast(rayCast, out raycastHit) && selectedDisk!=null && raycastHit.collider.CompareTag("A"))
             {
                 if (stackA.Count != 0 && (int.Parse(selectedDisk.name) < int.Parse(stackA.Peek().name)))
                 {
-                    Debug.Log("Wrong move");
+                    Debug.Log("Invalid move");
                     flags(selectedDisk);
                     selectedDisk = null;
+                    StartCoroutine(UIManager.InvalidMoves());
                     return;
                 }
 
@@ -71,6 +73,7 @@ public class Move : MonoBehaviour
                 stackA.Push(selectedDisk);
                 MakeFalse();
                 selectedDisk = null;
+                UIManager.moves++;
                 Debug.Log("Done");
             }
 
@@ -78,9 +81,10 @@ public class Move : MonoBehaviour
             {
                 if (stackB.Count != 0 && (int.Parse(selectedDisk.name) < int.Parse(stackB.Peek().name)))
                 {
-                    Debug.Log("Wrong move");
+                    Debug.Log("Invalid move");
                     flags(selectedDisk);
                     selectedDisk = null;
+                    StartCoroutine(UIManager.InvalidMoves());
                     return;
                 }
 
@@ -88,6 +92,7 @@ public class Move : MonoBehaviour
                 stackB.Push(selectedDisk);
                 MakeFalse();
                 selectedDisk = null;
+                UIManager.moves++;
                 Debug.Log("Done");
             }
 
@@ -95,9 +100,10 @@ public class Move : MonoBehaviour
             {
                 if (stackC.Count != 0 && (int.Parse(selectedDisk.name) < int.Parse(stackC.Peek().name)))
                 {
-                    Debug.Log("Wrong move");
+                    Debug.Log("Invalid move");
                     flags(selectedDisk);
                     selectedDisk = null;
+                    StartCoroutine(UIManager.InvalidMoves());
                     return;
                 }
 
@@ -105,6 +111,7 @@ public class Move : MonoBehaviour
                 stackC.Push(selectedDisk);
                 MakeFalse();
                 selectedDisk = null;
+                UIManager.moves++;
                 Debug.Log("Done");
             }
         }
